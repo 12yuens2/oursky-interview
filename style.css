@@ -1,21 +1,71 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
+	color: #808080;
+}
+
+#header {
+	position: absolute;
+	color: #FFF;
+	background-color: #00BFFF;
+	top: 0;
+	right: 0;
+	height: 5em;
+	width: 100%;
 }
 
 .form {
 	margin: auto;
+	margin-top: 6em;
 	width: 50%;
+	min-width: 300px;
+}
+
+.form input{
+	border: none;
+	border-bottom: 1px solid #808080;
+}
+
+.form input:focus {
+	outline: 0;
+}
+
+h3 {
+	/*font-family: */
+	margin: auto;
+	margin-top: 1em;
+	width: 50%;
+	height: 50%;
+	text-align: center;
 }
 
 button {
+	margin: 0 0.3em;
+	border: none;
+	border-radius: 0.5em;
+	box-shadow: 1px 1px 1px;
 	float: right;
+}
+
+button:active {
+	position: relative;
+	top: 1px;
+}
+
+button:focus {
+	outline: 0;
+}
+
+.container {
+	margin-top: 2em;
 }
 
 /* Task element */
 .task {
 	margin: 1em;
 	padding: 2em 1em;
-	border: 1px solid black;
+	border: 1px solid #D3D3D3;
+	box-shadow: 2px 2px 2px;
+	min-width: 400px;
 }
 
 /* Set background colour of task element depending on progress */
@@ -24,7 +74,7 @@ button {
 	background-color: #A9A9A9;
 }
 .task[done="paused"] {
-	background-color: #FFFFE0;
+	background-color: #F0E68C;
 }
 .task[done="false"] {
 	background-color: #FFF;
@@ -35,6 +85,15 @@ button {
 	margin-right: 5px;
 	float: right;
 }
+
+/* Task button styles */
+.pause {
+	background-color: #F0E68C;
+}
+.stop {
+	background-color: #90EE90;
+}
+
 
 /* Remove button when task is done*/
 .remove {

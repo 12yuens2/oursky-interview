@@ -33,8 +33,8 @@ function create_task_element() {
 	var div = $("<div>", {"class": "task"});
 
 	$(div).append($("<span class='name'></span>"));
-	$(div).append($("<button class='stop'>s</button>"));
-	$(div).append($("<button class='pause'>p</button>"));
+	$(div).append($("<button class='stop'>stop</button>"));
+	$(div).append($("<button class='pause'>pause</button>"));
 	$(div).append($("<span class='time'></span>"));
 
 	return div;
@@ -66,7 +66,7 @@ var Task = function(name, element) {
 	this.pause_button.click(function() {
 		/* Pause the timer */
 		if (task.timer) {
-			$(this).html("r");
+			$(this).html("resume");
 			$(task.element).attr("done", "paused");
 			clearInterval(task.timer)
 			task.timer = undefined;
@@ -74,7 +74,7 @@ var Task = function(name, element) {
 
 		/* Resume the timer */
 		else {
-			$(this).html("p");
+			$(this).html("pause");
 			$(task.element).attr("done", "false");
 			task.timer = setInterval(task.tick.bind(task), SECOND);
 		}

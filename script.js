@@ -4,9 +4,12 @@ var TIMERS = [];
 var SECONDS_IN_HOUR = 3600;
 var SECONDS_IN_MINUTE = 60;
 
-
 var container = $("body").find(".container");
 
+/**
+ * Function to create a new task with the name from input field
+ * and append the task to the container 
+ */
 function add_new_task() {
 	
 	/* Get name and clear the text box */
@@ -22,6 +25,9 @@ function add_new_task() {
 	$(container).prepend(task_element);
 }
 
+/**
+ * Function to create the element that holds each task
+ */
 function create_task_element() {
 	var div = $("<div>", {"class": "task"});
 
@@ -36,8 +42,9 @@ function create_task_element() {
 var Task = function(name, element) {
 	this.name = name;
 	this.element = element;
-	this.time = 3600;
+	this.time = 0;
 
+	/* Different elements of the task */
 	this.name_element = $(this.element).find(".name");
 	this.time_element = $(this.element).find(".time");
 	this.pause_button = $(this.element).find(".pause");
@@ -59,6 +66,7 @@ var Task = function(name, element) {
 		/* Pause the timer */
 		if (task.timer) {
 			$(this).html("r");
+			$(task.element).attr("done", "paused");
 			clearInterval(task.timer)
 			task.timer = undefined;
 		} 
@@ -66,6 +74,7 @@ var Task = function(name, element) {
 		/* Resume the timer */
 		else {
 			$(this).html("p");
+			$(task.element).attr("done", "false");
 			task.timer = setInterval(task.tick.bind(task), SECOND);
 		}
 	});
@@ -84,6 +93,11 @@ var Task = function(name, element) {
 
 		/* Set done attribute of task for background colour change*/
 		$(task.element).attr("done", "true");
+
+		/* Add button to remove the element */
+		$(task.element).prepend($("<button class='remove'>x</button>").click(function() {
+			$(task.element).remove();
+		}));
 	});
 
 	/* Update HTML element */

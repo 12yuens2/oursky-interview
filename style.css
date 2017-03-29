@@ -1,19 +1,42 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.form {
+	margin: auto;
+	width: 50%;
+}
+
+button {
+	float: right;
+}
+
+/* Task element */
 .task {
 	margin: 1em;
 	padding: 2em 1em;
-	background-color: blue;
 	border: 1px solid black;
 }
 
+/* Set background colour of task element depending on progress */
 .task[done="true"] {
-	background-color: red;
+	color: #696969;
+	background-color: #A9A9A9;
+}
+.task[done="paused"] {
+	background-color: #FFFFE0;
+}
+.task[done="false"] {
+	background-color: #FFF;
 }
 
-.task button {
-	float: right;
-}
-
+/* Time element of task */
 .time {
 	margin-right: 5px;
 	float: right;
+}
+
+/* Remove button when task is done*/
+.remove {
+	color: red;
 }

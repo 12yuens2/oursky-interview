@@ -1,5 +1,4 @@
 var SECOND = 1000;
-var TIMERS = [];
 
 var SECONDS_IN_HOUR = 3600;
 var SECONDS_IN_MINUTE = 60;
@@ -16,13 +15,15 @@ function add_new_task() {
 	var name = document.getElementById("name").value;
 	document.getElementById("name").value = "";
 
-	/* Create new task */
-	var task_element = create_task_element();
-	var task = new Task(name, task_element);
-	task.update_element();
+	if (name != "") {
+		/* Create new task */
+		var task_element = create_task_element();
+		var task = new Task(name, task_element);
+		task.update_element();
 
-	/* Append task to HTML */
-	$(container).prepend(task_element);
+		/* Append task to HTML */
+		$(container).prepend(task_element);	
+	}
 }
 
 /**
@@ -122,5 +123,4 @@ var Task = function(name, element) {
 
 		return hours + minutes + seconds;
 	}
-
 }

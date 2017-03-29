@@ -4,6 +4,9 @@ var TIMERS = [];
 var SECONDS_IN_HOUR = 3600;
 var SECONDS_IN_MINUTE = 60;
 
+
+var container = $("body").find(".container");
+
 function add_new_task() {
 	
 	/* Get name and clear the text box */
@@ -16,7 +19,7 @@ function add_new_task() {
 	task.update_element();
 
 	/* Append task to HTML */
-	$("body").append(task_element);
+	$(container).prepend(task_element);
 }
 
 function create_task_element() {
@@ -33,7 +36,7 @@ function create_task_element() {
 var Task = function(name, element) {
 	this.name = name;
 	this.element = element;
-	this.time = 0;
+	this.time = 3600;
 
 	this.name_element = $(this.element).find(".name");
 	this.time_element = $(this.element).find(".time");
@@ -74,6 +77,13 @@ var Task = function(name, element) {
 		/* Disable buttons */
 		$(task.pause_button).prop("disabled", true);
 		$(task.stop_button).prop("disabled", true);
+
+		/* Move to bottom of container */
+		$(task.element).remove();
+		$(container).append(task.element);
+
+		/* Set done attribute of task for background colour change*/
+		$(task.element).attr("done", "true");
 	});
 
 	/* Update HTML element */
@@ -85,18 +95,18 @@ var Task = function(name, element) {
 	/* Display the time in hrs:mins:secs */
 	this.display_time = function() {
 		var time = this.time
+
 		var hours = Math.floor(time / SECONDS_IN_HOUR);
 		time -= hours * SECONDS_IN_HOUR;
-		hours = hours == 0 ? "" : hours + " hrs ";
-
+		hours = hours == 0 ? "" : hours + " hr ";
 
 		var minutes = Math.floor(time / SECONDS_IN_MINUTE);
 		time -= minutes * SECONDS_IN_MINUTE;
-		minutes = minutes == 0 ? "" : minutes + " mins ";
+		minutes = minutes == 0 ? "" : minutes + " min ";
 
-
-		var seconds = time + " secs";
+		var seconds = time + " sec";
 
 		return hours + minutes + seconds;
 	}
+
 }

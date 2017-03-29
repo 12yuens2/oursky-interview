@@ -1,0 +1,19 @@
+.task {
+	margin: 1em;
+	padding: 2em 1em;
+	background-color: blue;
+	border: 1px solid black;
+}
+
+.task[done="true"] {
+	background-color: red;
+}
+
+.task button {
+	float: right;
+}
+
+.time {
+	margin-right: 5px;
+	float: right;
+}

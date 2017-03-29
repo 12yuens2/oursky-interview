@@ -86,12 +86,14 @@ var Task = function(name, element) {
 	this.display_time = function() {
 		var time = this.time
 		var hours = Math.floor(time / SECONDS_IN_HOUR);
-		hours = hours == 0 ? "" : hours + " hrs ";
 		time -= hours * SECONDS_IN_HOUR;
+		hours = hours == 0 ? "" : hours + " hrs ";
+
 
 		var minutes = Math.floor(time / SECONDS_IN_MINUTE);
-		minutes = minutes == 0 ? "" : minutes + " mins ";
 		time -= minutes * SECONDS_IN_MINUTE;
+		minutes = minutes == 0 ? "" : minutes + " mins ";
+
 
 		var seconds = time + " secs";
 
